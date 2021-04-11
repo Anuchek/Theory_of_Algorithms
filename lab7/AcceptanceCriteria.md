@@ -10,3 +10,27 @@ a. послідовні елементи;
 b. випадкові елементи;
 3. час пошуку;
 4. час видалення елементів.
+
+
+//   ___________Unknown Zalupa________________
+//    public void Task(int a, int b) {
+//        Stack<Integer> st = new Stack<>();
+//        FindKeys(a, b, root, st);
+//        while (!st.isEmpty()) {
+//            this.deletion(root, st.pop());
+//        }
+//    }
+//
+//    private void FindKeys(int a, int b, Node x, Stack<Integer> st) {
+//        int i;
+//        for (i = 0; i < x.n && x.key[i] < b; i++) {
+//            if (x.key[i] > a) {
+//                st.push(x.key[i]);
+//            }
+//        }
+//        if (!x.leaf) {
+//            for (int j = 0; j < i + 1; j++) {
+//                FindKeys(a, b, x.child[j], st);
+//            }
+//        }
+//    }
