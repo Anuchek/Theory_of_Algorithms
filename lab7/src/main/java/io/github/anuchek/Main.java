@@ -12,12 +12,14 @@ public class Main {
         int[] random = CreateRandomArray.create(100_000);
         int[] consistent = CreateOrderedArray.create(100_000);
 
-        DataProcessor btree = new DataProcessor(new BTree(5), random, consistent);
+        DataProcessor btree = new DataProcessor(new BTree(), random, consistent);
 
         System.out.println("\n==============B-tree==============");
         btree.testInsertionOnOrderedArray();
         btree.testInsertionOnRandomArray();
         btree.testSearch();
         btree.testRemove();
+        //btree.testBalancingOnRandomArray();
+        //btree.testBalancingOnOrderedArray();
     }
 }
