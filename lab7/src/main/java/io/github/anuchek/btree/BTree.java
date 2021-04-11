@@ -6,10 +6,6 @@ public class BTree {
     private int T;
     private Node root;
 
-    public int getT() {
-        return T;
-    }
-
     //constructor
     public BTree(int t) {
         T = t;
@@ -131,8 +127,8 @@ public class BTree {
 
     // delete method
     public void delete(int key) {
-        Node x = search(root, key);
-        if (x == null) {
+        Node node = search(root, key);
+        if (node == null) {
             return;
         }
         deletion(root, key);
@@ -159,7 +155,7 @@ public class BTree {
                 if (pred.n >= T) {
                     for (;;) {
                         if (pred.leaf) {
-                            System.out.println(pred.n);
+                            //System.out.println(pred.n);
                             predKey = pred.key[pred.n - 1];
                             break;
                         } else {
@@ -216,7 +212,7 @@ public class BTree {
                     if (node == root) {
                         root = node.child[0];
                     }
-                    //node = node.child[0];
+                    node = node.child[0];
                 }
                 deletion(pred, key);
             }
@@ -227,8 +223,10 @@ public class BTree {
                 }
             }
             Node tempNode = node.child[pos];
-            if (tempNode.n >= T) {
-                deletion(tempNode, key);
+            if(!(tempNode == null)) {
+                if (tempNode.n >= T) {
+                    deletion(tempNode, key);
+                }
                 return;
             }
             if (true) {
@@ -260,39 +258,39 @@ public class BTree {
                     tempNode.n++;
                     deletion(tempNode, key);
                 } else {
-                    Node lt;
-                    Node rt;
-                    //boolean last = false;
+                    Node left;
+                    Node right;
+                    boolean last = false;
                     if (pos != node.n) {
                         devider = node.key[pos];
-                        lt = node.child[pos];
-                        rt = node.child[pos + 1];
+                        left = node.child[pos];
+                        right = node.child[pos + 1];
                     } else {
                         devider = node.key[pos - 1];
-                        rt = node.child[pos];
-                        lt = node.child[pos - 1];
-                        //last = true;
+                        right = node.child[pos];
+                        left = node.child[pos - 1];
+                        last = true;
                         pos--;
                     }
                     if (node.n - 1 - pos >= 0) System.arraycopy(node.key, pos + 1, node.key, pos, node.n - 1 - pos);
                     if (node.n - (pos + 1) >= 0) System.arraycopy(node.child, pos + 1 + 1, node.child, pos + 1, node.n - (pos + 1));
                     node.n--;
-                    lt.key[lt.n++] = devider;
+                    left.key[left.n++] = devider;
 
-                    for (int i = 0, j = lt.n; i < rt.n + 1; i++, j++) {
-                        if (i < rt.n) {
-                            lt.key[j] = rt.key[i];
+                    for (int i = 0, j = left.n; i < right.n + 1; i++, j++) {
+                        if (i < right.n) {
+                            left.key[j] = right.key[i];
                         }
-                        lt.child[j] = rt.child[i];
+                        left.child[j] = right.child[i];
                     }
-                    lt.n += rt.n;
+                    left.n += right.n;
                     if (node.n == 0) {
                         if (node == root) {
                             root = node.child[0];
                         }
-                        //node = node.child[0];
+                        node = node.child[0];
                     }
-                    deletion(lt, key);
+                    deletion(left, key);
                 }
             }
         }
