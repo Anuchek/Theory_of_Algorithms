@@ -14,6 +14,31 @@ public class BTree {
         root.leaf = true;
     }
 
+    // _______________Search method_______________
+    public boolean search(int k) {
+        return this.searcher(root, k) != null;
+    }
+
+    // Search the key
+    private BTree.Node searcher(BTree.Node node, int key) {
+        int i;
+        if (node == null)
+            return null;
+        for (i = 0; i < node.numberOfChildren; i++) {
+            if (key < node.key[i]) {
+                break;
+            }
+            if (key == node.key[i]) {
+                return node;
+            }
+        }
+        if (node.leaf) {
+            return null;
+        } else {
+            return searcher(node.child[i], key);
+        }
+    }
+
     public class Node {
         int numberOfChildren; // number of children
         int[] key = new int[2 * Degree - 1];
