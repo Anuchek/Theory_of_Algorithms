@@ -1,5 +1,7 @@
 package io.github.anuchek.btree;
 
+import java.util.ArrayList;
+
 class Node {
 
     int[] keys; // keys of nodes
@@ -194,6 +196,7 @@ class Node {
 
     // Merge childre[index + 1] into childre[index]
     public void merge(int index) {
+        long start = System.nanoTime();
 
         Node child = children[index];
         Node sibling = children[index + 1];
@@ -220,6 +223,9 @@ class Node {
 
         child.num += sibling.num + 1;
         num--;
+        //measurements added to array
+        long end = System.nanoTime();
+        BTree.measurements.add(end - start);
     }
 
     //insert method
@@ -252,6 +258,8 @@ class Node {
 
     public void splitChild(int i, Node y) {
 
+        long start = System.nanoTime();
+
         // First, create a node to hold the keys of MinDeg-1 of y
         Node z = new Node(y.MinDeg, y.isLeaf);
         z.num = MinDeg - 1;
@@ -276,6 +284,10 @@ class Node {
         keys[i] = y.keys[MinDeg - 1];
 
         num = num + 1;
+
+        //add measurements to array
+        long end = System.nanoTime();
+        BTree.measurements.add(end - start);
     }
 
     //display method

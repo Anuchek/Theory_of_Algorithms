@@ -2,6 +2,7 @@ package io.github.anuchek.service;
 
 import io.github.anuchek.btree.BTree;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class DataProcessor {
@@ -50,5 +51,22 @@ public class DataProcessor {
         long finish = System.nanoTime();
         System.out.println("Removing: " + String.format(Locale.CANADA_FRENCH, "%,d", (finish-start)) + "ns");
 
+    }
+
+    public void testBalancingOnRandomArray(int BTreeDegree) {
+        BTree bTree = new BTree(BTreeDegree);
+        for (int i : randomArray) {
+            bTree.insert(i);
+        }
+        System.out.println("Average balancing(random array): " + String.format(Locale.CANADA_FRENCH, "%,d", bTree.getAverageTimeOfBalancing()) + "ns");
+    }
+
+    public void testBalancingOnOrderedArray(int BTreeDegree) {
+        BTree.measurements = new ArrayList<>(1_000_000);
+        BTree bTree = new BTree(BTreeDegree);
+        for (int i : orderedArray) {
+            bTree.insert(i);
+        }
+        System.out.println("Average balancing(ordered array): " + String.format(Locale.CANADA_FRENCH, "%,d", bTree.getAverageTimeOfBalancing()) + "ns");
     }
 }

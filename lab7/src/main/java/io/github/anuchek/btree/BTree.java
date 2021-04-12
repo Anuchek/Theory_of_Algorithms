@@ -1,8 +1,11 @@
 package io.github.anuchek.btree;
 
+import java.util.ArrayList;
+
 public class BTree implements Tree{
     Node root;
     int MinDeg;
+    public static ArrayList<Long> measurements = new ArrayList<>(10_000);
 
     // Constructor
     public BTree(int deg){
@@ -66,5 +69,12 @@ public class BTree implements Tree{
             else
                 root = root.children[0];
         }
+    }
+    public long getAverageTimeOfBalancing() {
+        long sum = 0;
+        for (long i : measurements) {
+            sum += i;
+        }
+        return sum/ measurements.size();
     }
 }
