@@ -1,6 +1,6 @@
 package io.github.anuchek.btree;
 
-public class BTree{
+public class BTree implements Tree{
     Node root;
     int MinDeg;
 
