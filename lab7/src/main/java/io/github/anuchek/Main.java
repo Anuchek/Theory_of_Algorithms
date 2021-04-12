@@ -4,7 +4,7 @@ import io.github.anuchek.service.BTreeTester;
 
 public class Main {
     public static void main(String[] args) {
-        BTreeTester.test(5,10);
+        BTreeTester.test(5,10, 100_000);
     }
 }
 

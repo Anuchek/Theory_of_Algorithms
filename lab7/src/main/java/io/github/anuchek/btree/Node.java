@@ -1,7 +1,5 @@
 package io.github.anuchek.btree;
 
-import java.util.ArrayList;
-
 class Node {
 
     int[] keys; // keys of nodes
@@ -16,7 +14,6 @@ class Node {
         this.MinDeg = deg;
         this.isLeaf = isLeaf;
         this.keys = new int[2 * this.MinDeg - 1]; // Node has 2*MinDeg-1 keys at most
-        //this.keys = new int[2*this.MinDeg - 1]; // Doesn't work with - 1
         this.children = new Node[2 * this.MinDeg];
         this.num = 0;
     }
