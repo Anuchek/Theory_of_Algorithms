@@ -2,7 +2,6 @@ package io.github.anuchek.service;
 
 import io.github.anuchek.btree.BTree;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 public class DataProcessor {
@@ -37,7 +36,7 @@ public class DataProcessor {
     public void testSearch() {
         long start = System.nanoTime();
         for (int i : randomArray) {
-            tree.containsBool(i);
+            tree.search(i);
         }
         long finish = System.nanoTime();
         System.out.println("Searching: " + String.format(Locale.CANADA_FRENCH, "%,d", (finish-start)) + "ns");
@@ -46,7 +45,7 @@ public class DataProcessor {
     public void testRemove() {
         long start = System.nanoTime();
         for (int i : randomArray) {
-            tree.delete(i);
+            tree.remove(i);
         }
         long finish = System.nanoTime();
         System.out.println("Removing: " + String.format(Locale.CANADA_FRENCH, "%,d", (finish-start)) + "ns");
